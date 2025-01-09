@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aw, Snap!</title>
+    <style>
+        body {
+            font-family: "Roboto", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Pure white */
+            color: #5f6368;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+        .icon {
+            margin-bottom: 20px;
+            user-select: none; /* Prevents selection */
+            -webkit-user-drag: none; /* Prevents dragging on webkit browsers */
+            pointer-events: none; /* Disables interactions like right-click or long-press */
+        }
+        .title {
+            font-size: 28px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 10px;
+        }
+        .message {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #5f6368;
+        }
+        .actions a {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background-color: #1a73e8; /* Bright blue for buttons */
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 4px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+        .actions a:hover {
+            background-color: #155cb0;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon">
+        <img src="https://miro.medium.com/v2/resize:fit:646/1*pyg5mJOB2fmBetnvULM73w.png" 
+             alt="Aw, Snap!" 
+             style="width: 120px; height: auto;">
+    </div>
+    <div class="title">Aw, Snap!</div>
+    <div class="message">Something went wrong while displaying this webpage.</div>
+    <div class="actions">
+        <a href="#" onclick="location.reload()">Reload</a>
+        <a href="https://support.google.com/chrome/answer/95669" target="_blank" rel="noopener noreferrer">Learn more</a>
+    </div>
+    <script>
+        let jKeyCount = 0; // Counter for 'J' key presses
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'j' || event.key === 'J') {
+                jKeyCount++;
+                if (jKeyCount === 5) {
+                    // Reset counter
+                    jKeyCount = 0;
+                    
+                    // Open a new tab with an iframe filling the page
+                    const newTab = window.open('about:blank', '_blank');
+                    if (newTab) {
+                        newTab.document.write(`
+                            <!DOCTYPE html>
+                            <html lang="en">
+                            <head>
+                                <meta charset="UTF-8">
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                <title>Blank Page</title>
+                                <style>
+                                    body, html {
+                                        margin: 0;
+                                        padding: 0;
+                                        height: 100%;
+                                        overflow: hidden;
+                                    }
+                                    iframe {
+                                        border: none;
+                                        width: 100%;
+                                        height: 100%;
+                                    }
+                                </style>
+                            </head>
+                            <body>
+                                <iframe src="https://example.com"></iframe>
+                            </body>
+                            </html>
+                        `);
+                        newTab.document.close();
+                    }
+                }
+            } else {
+                // Reset if another key is pressed
+                jKeyCount = 0;
+            }
+        });
+
+        // Disable long press or saving on the image
+        document.querySelector('.icon img').addEventListener('contextmenu', e => e.preventDefault());
+        document.querySelector('.icon img').addEventListener('mousedown', e => e.preventDefault());
+        document.querySelector('.icon img').addEventListener('touchstart', e => e.preventDefault());
+    </script>
+</body>
+</html>
