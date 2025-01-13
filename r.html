@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script>
+    // Redirect to about:blank and dynamically create the iframe there
+    document.addEventListener("DOMContentLoaded", () => {
+      const blankWindow = window.open("about:blank", "_self");
+      if (blankWindow) {
+        blankWindow.document.write(`
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Blank Page</title>
+            <style>
+              html, body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+                background-color: white;
+              }
+              iframe {
+                border: none;
+                width: 100%;
+                height: 100%;
+              }
+            </style>
+          </head>
+          <body>
+            <iframe src="https://bearclubstudios.github.io/loader/"></iframe>
+          </body>
+          </html>
+        `);
+      }
+    });
+  </script>
+</head>
+<body>
+</body>
+</html>
