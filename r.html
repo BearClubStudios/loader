@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> </title>
   <script>
-    // Redirect to about:blank and dynamically create the iframe there
     document.addEventListener("DOMContentLoaded", () => {
-      const blankWindow = window.open("about:blank", "_self");
+      // Open a new tab pointing to about:blank
+      const blankWindow = window.open("about:blank", "_blank"); 
       if (blankWindow) {
+        // Write content into the new tab
         blankWindow.document.write(`
           <!DOCTYPE html>
           <html lang="en">
@@ -36,6 +37,8 @@
           </body>
           </html>
         `);
+        // Close the document stream in the new tab
+        blankWindow.document.close();
       }
     });
   </script>
